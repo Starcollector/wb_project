@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.js"></script>
+ 
+
+        <title>分级篇章检索系统</title>
+        <style>
+        body
+        {
+            background-image:url(../static/image/1.jpg);
+            background-size: auto 100%;
+        }
+
+
+         #bbb
+        {
+       border-radius:5px;
+       width:70px;
+       height:45px;
+       font-size:15px;
+       margin-left:600px;
+       margin-top:-43px;
+       cursor:pointer;
+       background-color:#d3d3d3;
+       }
+        </style>
+    </head>
+    <body>
+        <main id="main_area" class="cd-main-content">
+            <div class="cd-fixed-bg cd-bg-1">
+                <div>
+
+                <div  style=" align-items: center;display: flex;justify-content: center;margin-top:80px;">
+
+                    <form role="search" method="get" id="searchform" action="{% url 'haystack_search' %}">
+                   <input type="search" name="q" class="form-control" style="width:500px;height:43px;margin-left:70px;" placeholder="搜索" required>
+
+
+                        <div style="background-color: lightgray;width:500px;height: 30px;border-radius: 3px;font-size: 15px;margin-top: 0px;margin-left: 70px;">
+
+                        <span>难度选择：</span>
+
+                        <input type="radio" name="level" id="low" value=0 checked="checked" /> 低级
+                        <input type="radio" name="level" id="medium" value=1 /> 中级
+                        <input type="radio" name="level" id="high" value=2 /> 高级
+
+
+                     </div>
+
+
+                     <button type="submit" id="bbb">搜索</button>
+
+                    </form>
+<!--                    <form action="{% url 'haystack_search' %}" class="parent" method="POST">-->
+<!--                        {% csrf_token %}-->
+<!--                     -->
+<!--                     <input type="text" name="q" class="form-control" style="width:600px;border-radius:5px;height: 50px;margin-left: 20px;" placeholder="输入查询关键词...">-->
+<!--                     <br><br>-->
+<!--                     -->
+<!--                   -->
+<!--                </form>-->
+             </div>
+            </div>
+                <div  style="  align-items: center;display: flex;justify-content: center;margin-top:50px;">
+             
+             
+             <div id="scroll-bottom" class="scroll-to-bottom">
+                 <a href="#domain-search" class="js-scroll-trigger"><span></span></a>
+              
+             </div>
+             </div>
+             </div>
+        </main>
+    <script>
+        $("#bbb").click(function(){
+        var label=$('input:radio:checked').val();
+        $.ajax({
+          url:'/result/',
+          type:'POST',
+          async:false,
+          data:JSON.stringify({
+            "label":label,
+          }),
+          dataType: 'json',
+          contentType: 'application/json',
+        });
+    });
+    </script>
+        
+    </body>
+</html>
