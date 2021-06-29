@@ -8,6 +8,8 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 
 For the full list of settings and their values, see
 
+django-author yjx
+
 """
 
 import os
@@ -95,6 +97,7 @@ WSGI_APPLICATION = 'wb_project.wsgi.application'
 
 
 # Database
+
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
@@ -102,7 +105,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'test',
         'USER': 'root',
-        'PASSWORD': 'xiaoyuan8625',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306'
     }
